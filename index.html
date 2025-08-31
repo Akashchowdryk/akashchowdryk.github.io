@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Chowdry K - Code Craftsman & AI Enthusiast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00ccff;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --light: #f0f0f0;
+            --accent: #ff0080;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* Matrix Rain Background */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: 0.1s;
+            z-index: 9999;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            position: relative;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .glitch {
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            color: var(--light);
+            letter-spacing: 5px;
+            animation: glitch 2s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: 'AKASH CHOWDRY K';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: var(--primary);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: var(--secondary);
+            z-index: -2;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 10px var(--primary); }
+            50% { text-shadow: 0 0 20px var(--secondary); }
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            25% { clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); transform: translate(-2px, 2px); }
+            75% { clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            25% { clip-path: polygon(0 0, 100% 0, 100% 55%, 0 55%); transform: translate(2px, -2px); }
+            75% { clip-path: polygon(0 45%, 100% 45%, 100% 100%, 0 100%); transform: translate(-2px, 2px); }
+        }
+
+        .typewriter {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            color: var(--primary);
+        }
+
+        .typewriter::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        h2::before {
+            content: '<';
+            color: var(--secondary);
+            margin-right: 1rem;
+        }
+
+        h2::after {
+            content: '/>';
+            color: var(--secondary);
+            margin-left: 1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 3px;
+            border-radius: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .profile-inner {
+            background: var(--darker);
+            padding: 2rem;
+            border-radius: 17px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin: 0 auto 1rem;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--primary), transparent);
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .skill-card:hover::before {
+            animation: shine 0.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .skill-category {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 0, 128, 0.05);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            animation: loading 2s linear infinite;
+        }
+
+        @keyframes loading {
+            to { transform: translateX(100%); }
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotateZ(-1deg);
+            box-shadow: 0 20px 40px rgba(255, 0, 128, 0.3);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .project-links {
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .project-links a:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: inline-block;
+            font-size: 2rem;
+            color: var(--light);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .contact-link:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .contact-link::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .contact-link:hover::after {
+            opacity: 1;
+        }
+
+        /* Terminal Window */
+        .terminal {
+            background: rgba(5, 5, 5, 0.9);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .terminal-header {
+            background: var(--primary);
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--dark);
+        }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .terminal-prompt {
+            color: var(--primary);
+        }
+
+        .terminal-command {
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Easter Egg */
+        .konami-activated {
+            animation: rainbow 2s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Background Canvas -->
+    <canvas id="matrix-bg"></canvas>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="glitch">AKASH CHOWDRY K</h1>
+            <p class="typewriter" id="typewriter"></p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="profile-card">
+                <div class="profile-inner">
+                    <div class="avatar">AK</div>
+                    <h3>Code Craftsman</h3>
+                    <p style="color: var(--primary);">Building the future, one line at a time</p>
+                </div>
+            </div>
+            <div class="about-text">
+                <p>Hey there! I'm <span class="highlight">Akash</span>, a passionate <span class="highlight">Software Engineering Intern</span> from Ballari, Karnataka.</p>
+                <p>Currently crafting amazing experiences at <span class="highlight">KODNEST</span>, where I'm building a student learning platform that impacts <span class="highlight">10,000+ users</span> daily.</p>
+                <p>I believe in the power of code to transform ideas into reality. When I'm not debugging or pushing to GitHub, you'll find me exploring <span class="highlight">AI technologies</span>, building <span class="highlight">full-stack applications</span>, or brainstorming the next big thing in tech.</p>
+                <p>My journey? From creating <span class="highlight">health monitoring systems</span> to predicting <span class="highlight">crop yields with AI</span> - I love solving real-world problems with innovative solutions!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Section -->
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-button"></div>
+            <div class="terminal-button"></div>
+            <div class="terminal-button"></div>
+        </div>
+        <div class="terminal-body">
+            <div class="terminal-line">
+                <span class="terminal-prompt">akash@developer:~$</span>
+                <span class="terminal-command"> whoami</span>
+            </div>
+            <div class="terminal-line">Full Stack Developer | AI Enthusiast | Problem Solver</div>
+            <div class="terminal-line">
+                <span class="terminal-prompt">akash@developer:~$</span>
+                <span class="terminal-command"> cat skills.txt</span>
+            </div>
+            <div class="terminal-line">Loading awesome skills...</div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Tech Stack</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-category">💻 Programming Languages</div>
+                <div class="skill-list">
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-category">🌐 Web Technologies</div>
+                <div class="skill-list">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">React</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-category">🔧 Frameworks & Libraries</div>
+                <div class="skill-list">
+                    <span class="skill-tag">Spring Boot</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Hibernate</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-category">🤖 AI & APIs</div>
+                <div class="skill-list">
+                    <span class="skill-tag">OpenAI</span>
+                    <span class="skill-tag">Google Gemini</span>
+                    <span class="skill-tag">Claude</span>
+                    <span class="skill-tag">Twilio</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-category">🚀 DevOps & Tools</div>
+                <div class="skill-list">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Windows</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-category">✨ Soft Skills</div>
+                <div class="skill-list">
+                    <span class="skill-tag">Active Listener</span>
+                    <span class="skill-tag">Innovative</span>
+                    <span class="skill-tag">Communicator</span>
+                    <span class="skill-tag">Thinker</span>
+                    <span class="skill-tag">Intuitive</span>
+                    <span class="skill-tag">Collaborator</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h3 class="project-title">🏥 AI-Enabled Health Monitoring System</h3>
+                <p class="project-tech">Python • Flask • Google Gemini API • Twilio</p>
+                <p>A revolutionary health monitoring platform that tracks patient vitals in real-time, predicts 25+ diseases, and sends instant alerts to caretakers. Because health can't wait!</p>
+                <div class="project-links">
+                    <a href="https://github.com/Akashchowdryk/AI-driven-health-monitoring-system" target="_blank">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3 class="project-title">🏨 Hostel Management System</h3>
+                <p class="project-tech">HTML • CSS • PHP • SQL</p>
+                <p>A comprehensive solution for hostel operations featuring room booking, user management, and real-time accommodation tracking. Making hostel life easier, one room at a time!</p>
+                <div class="project-links">
+                    <a href="https://github.com/Akashchowdryk/hostel-management" target="_blank">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3 class="project-title">🌾 AI-Driven Crop Prediction</h3>
+                <p class="project-tech">Python • Machine Learning • Flask • Scikit-learn</p>
+                <p>Smart farming solution that predicts optimal crops and fertilizers based on climate and soil data. Boosting productivity by 25% while promoting sustainable agriculture!</p>
+                <div class="project-links">
+                    <a href="https://github.com/Akashchowdryk/crop-prediction" target="_blank">
+                        <i class="fab fa-github"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Let's Connect</h2>
+        <div class="contact-content">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to build something amazing together? Let's talk!</p>
+            <div class="contact-links">
+                <a href="mailto:akashchowdryk@gmail.com" class="contact-link" data-tooltip="Email Me">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="tel:+918123322084" class="contact-link" data-tooltip="Call Me">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="https://github.com/Akashchowdryk" class="contact-link" data-tooltip="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/akash-chowdry-k" class="contact-link" data-tooltip="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Typewriter Effect
+        const phrases = [
+            "Software Engineering Intern @ KODNEST",
+            "Full Stack Developer",
+            "AI Enthusiast",
+            "Problem Solver",
+            "Code Craftsman"
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('typewriter');
+
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        typeWriter();
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Konami Code Easter Egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    document.body.classList.add('konami-activated');
+                    alert('🎮 Konami Code Activated! You found the easter egg!');
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
